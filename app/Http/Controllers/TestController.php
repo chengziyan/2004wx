@@ -28,7 +28,9 @@ class TestController extends Controller
         $tmpStr = sha1($tmpStr);
 
         if ($tmpStr == $signature) {
-            echo $tmpArrc;
+            return true;
+        }else{
+            return false;
         }
     }
 }
