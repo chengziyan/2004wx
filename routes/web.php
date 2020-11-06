@@ -19,3 +19,4 @@ Route::get('/', function () {
 
 Route::get('/test1','TestController@test');
 Route::get('/index','TestController@index');
+Route::get('/token','TestController@getAccessToken');
