@@ -28,14 +28,27 @@ class TestController extends Controller
         if ($tmpStr == $signature) {
             $xml_str=file_get_contents("php://input");
             Log::info($xml_str);
-            $xml="<xml>
-  <ToUserName><![CDATA[toUser]]></ToUserName>
-  <FromUserName><![CDATA[FromUser]]></FromUserName>
-  <CreateTime>123456789</CreateTime>
-  <MsgType><![CDATA[event]]></MsgType>
-  <Event><![CDATA[subscribe]]></Event>
-</xml>";
+            $data = simplexml_load_string($xml_str);
+            $Content = "谢谢关注";
         }
+        $info = $this->getMsg($data,$Content);
+    }
+    public function getMsg($data,$Content){
+        $ToUserName = $data->FromUserName;
+        $FromUserName = $data->$ToUserName;
+        $CreateTime = time();
+        $MsgType = "text";
+
+        $xml = "<xml>
+                  <ToUserName><![CDATA[%s]]></ToUserName>
+                  <FromUserName><![CDATA[%s]]></FromUserName>
+                  <CreateTime>%s</CreateTime>
+                  <MsgType><![CDATA[%s]]></MsgType>
+                  <Content><![CDATA[%s]]></Content>
+                </xml>";
+        $info = sprintf($xml,$ToUserName,$FromUserName,$CreateTime,$MsgType);
+        Log::info($info);
+        echo $info;
     }
 
     /**
