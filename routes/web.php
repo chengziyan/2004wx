@@ -18,5 +18,4 @@ Route::get('/', function () {
 
 
 Route::get('/test1','TestController@test');
-Route::get('/test2','TestController@test2');
-Route::get('/indexs','TestController@index');
+Route::get('/index','TestController@index');

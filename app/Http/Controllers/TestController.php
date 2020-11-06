@@ -10,17 +10,10 @@ class TestController extends Controller
         echo __METHOD__;
     }
     public function index(){
-        $res=$this->test2();
-        if ($res){
-            echo $_GET['echostr'];
-        }
-    }
-    public function test2()
-    {
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
-        $token = "wangba";
+        $token = "wechat";
 //        echo $token;die;
         $tmpArr = array($token, $timestamp, $nonce);
         sort($tmpArr, SORT_STRING);
