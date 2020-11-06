@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
-
+use Log;
 class TestController extends Controller
 {
     public function test(){
         echo __METHOD__;
+    }
+    public function xml(){
+        $res=$this->index();
+        echo $res;
     }
     public function index(){
         $signature = $_GET["signature"];
@@ -22,9 +26,15 @@ class TestController extends Controller
         $tmpStr = sha1($tmpStr);
 
         if ($tmpStr == $signature) {
-            echo $_GET['echostr'];
-        }else{
-            echo "aaa";
+            $xml_str=file_get_contents("php://input");
+            Log::info($xml_str);
+            $xml="<xml>
+  <ToUserName><![CDATA[toUser]]></ToUserName>
+  <FromUserName><![CDATA[FromUser]]></FromUserName>
+  <CreateTime>123456789</CreateTime>
+  <MsgType><![CDATA[event]]></MsgType>
+  <Event><![CDATA[subscribe]]></Event>
+</xml>";
         }
     }
 
