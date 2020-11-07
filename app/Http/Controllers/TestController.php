@@ -20,7 +20,7 @@ class TestController extends Controller
         $nonce = $_GET["nonce"];
 
         $token = "wechat";
-        $tmpArr = array($token, $timestamp, $nonce);
+        $tmpArr = array($token,$timestamp,$nonce);
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode($tmpArr);
         $tmpStr = sha1($tmpStr);
@@ -29,7 +29,10 @@ class TestController extends Controller
             $xml_str=file_get_contents("php://input");
             Log::info($xml_str);
             $data = simplexml_load_string($xml_str);
-            $Content = "谢谢关注";
+            if($data->Event == "subscribe"){
+                $Content = "谢谢关注";
+            }
+
         }
         $info = $this->getMsg($data,$Content);
     }
