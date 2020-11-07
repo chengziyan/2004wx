@@ -31,7 +31,7 @@ class TestController extends Controller
             $openid = $data->FromUserName;
             $access_token = $this->getAccessToken();
             $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid="."$openid"."&lang=zh_CN";
-            $user = json_encode($this->http_get($url),true);
+            $user = json_decode($this->http_get($url),true);
             if(isset($user['errcode'])){
                 file_put_contents('log.txt',$user['errcode']);
             }else{
