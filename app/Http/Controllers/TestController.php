@@ -36,22 +36,50 @@ class TestController extends Controller
                 file_put_contents('log.txt',$user['errcode']);
             }else{
                 if($data->Event == "subscribe"){
-                    $post = new User();
-                    $datas =[
-                        "subscribe"=>$user["subscribe"],
-                        "openid"=>$user["openid"],
-                        "nickname"=>$user["nickname"],
-                        "sex"=>$user["sex"],
-                        "city"=>$user["city"],
-                        "country"=>$user["country"],
-                        "province"=>$user["province"],
-                        "language"=>$user["language"],
-                        "headimgurl"=>$user["headimgurl"],
-                        "subscribe_time"=>$user["subscribe_time"],
-                        "subscribe_scene"=>$user["subscribe_scene"],
-                    ];
-                    $name =  $post->insert($datas);
-                    $Content = "谢谢关注";
+                    $first = User::where("openid",$user['openid'])->first();
+
+                    if($first){
+                        $datas =[
+                            "subscribe"=>$user["subscribe"],
+                            "openid"=>$user["openid"],
+                            "nickname"=>$user["nickname"],
+                            "sex"=>$user["sex"],
+                            "city"=>$user["city"],
+                            "country"=>$user["country"],
+                            "province"=>$user["province"],
+                            "language"=>$user["language"],
+                            "headimgurl"=>$user["headimgurl"],
+                            "subscribe_time"=>$user["subscribe_time"],
+                            "subscribe_scene"=>$user["subscribe_scene"],
+                        ];
+
+                        User::where("openid",$user['openid'])->update($datas);
+                        $Content = "欢迎挫回来";
+
+
+                    }else {
+
+                        $post = new User();
+                        $datas = [
+                            "subscribe" => $user["subscribe"],
+                            "openid" => $user["openid"],
+                            "nickname" => $user["nickname"],
+                            "sex" => $user["sex"],
+                            "city" => $user["city"],
+                            "country" => $user["country"],
+                            "province" => $user["province"],
+                            "language" => $user["language"],
+                            "headimgurl" => $user["headimgurl"],
+                            "subscribe_time" => $user["subscribe_time"],
+                            "subscribe_scene" => $user["subscribe_scene"],
+                        ];
+                        $name = $post->insert($datas);
+                        $Content = "谢谢关注";
+                    }
+                }else{
+                    User::where("openid",$user['openid'])->update(["subscribe"=>0]);
+                    $Content = "取关成功";
+
                 }
             }
         }
