@@ -37,7 +37,7 @@ class TestController extends Controller
             }else{
                 $content = '感谢您的关注';
             }
-            $post = User::save($user);
+            $post = User::insert($user);
             if($data->Event == "subscribe"){
                 $Content = "谢谢关注";
             }
