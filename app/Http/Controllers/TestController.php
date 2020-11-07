@@ -25,8 +25,8 @@ class TestController extends Controller
 
         if ($tmpStr == $signature) {
             $xml_str=file_get_contents("php://input");
-            Log::info($xml_str);
-            $data = simplexml_load_string($xml_str);
+            //Log::info($xml_str);
+            $data = simplexml_load_string($xml_str,"SimpleXMLElement",LIBXML_NOCDATA);
             //用户扫码的openid
             $openid = $data->FromUserName;
             $access_token = $this->getAccessToken();
