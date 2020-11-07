@@ -35,25 +35,24 @@ class TestController extends Controller
             if(isset($user['errcode'])){
                 file_put_contents('log.txt',$user['errcode']);
             }else{
-                $Content = '感谢您的关注';
-            }
-            $post = new User();
-            $data =[
-                "subscribe"=>$post["subscribe"],
-                "openid"=>$post["openid"],
-                "nickname"=>$post["nickname"],
-                "sex"=>$post["sex"],
-                "city"=>$post["city"],
-                "country"=>$post["country"],
-                "province"=>$post["province"],
-                "language"=>$post["language"],
-                "headimgurl"=>$post["headimgurl"],
-                "subscribe_time"=>$post["subscribe_time"],
-                "subscribe_scene"=>$post["subscribe_scene"],
-            ];
-            $name =  $user->insert($data);
-            if($data->Event == "subscribe"){
-                $Content = "谢谢关注";
+                if($data->Event == "subscribe"){
+                    $post = new User();
+                    $data =[
+                        "subscribe"=>$user["subscribe"],
+                        "openid"=>$user["openid"],
+                        "nickname"=>$user["nickname"],
+                        "sex"=>$user["sex"],
+                        "city"=>$user["city"],
+                        "country"=>$user["country"],
+                        "province"=>$user["province"],
+                        "language"=>$user["language"],
+                        "headimgurl"=>$user["headimgurl"],
+                        "subscribe_time"=>$user["subscribe_time"],
+                        "subscribe_scene"=>$user["subscribe_scene"],
+                    ];
+                    $name =  $post->insert($data);
+                    $Content = "谢谢关注";
+                }
             }
         }
         $info = $this->getMsg($data,$Content);
