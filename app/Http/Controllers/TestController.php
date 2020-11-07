@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+//use App\Http\Middleware\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
-use Log;
+use App\Model\User;
+
 class TestController extends Controller
 {
     public function test(){
@@ -25,13 +27,24 @@ class TestController extends Controller
             $xml_str=file_get_contents("php://input");
             Log::info($xml_str);
             $data = simplexml_load_string($xml_str);
+            //用户扫码的openid
+            $openid = $data->FromUserName;
+            $access_token = $this->getAccessToken();
+            $url = "https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token=".$access_token."&openid="."$openid"."&lang=zh_CN";
+            $user = json_encode($this->http_get($url),true);
+            if(isset($user['errcode'])){
+                file_put_contents('log.txt',$user['errcode']);
+            }else{
+                $content = '感谢您的关注';
+            }
+            $post = User::save($user);
             if($data->Event == "subscribe"){
                 $Content = "谢谢关注";
             }
-
         }
         $info = $this->getMsg($data,$Content);
     }
+
     public function getMsg($data,$Content){
         $ToUserName = $data->FromUserName;
         $FromUserName = $data->$ToUserName;
@@ -70,7 +83,18 @@ class TestController extends Controller
             Redis::set($key,$token);
             Redis::expire($key,3600);
         }
-        echo "access_token".$token;
+        return $token;
     }
+    function http_get($url){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);//向那个url地址上面发送
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);//设置发送http请求时需不需要证书
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//设置发送成功后要不要输出1 不输出，0输出
+        $output = curl_exec($ch);//执行
+        curl_close($ch);    //关闭
+        return $output;
+    }
+
 
 }
