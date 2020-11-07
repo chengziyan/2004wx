@@ -30,7 +30,7 @@ class TestController extends Controller
             //用户扫码的openid
             $openid = $data->FromUserName;
             $access_token = $this->getAccessToken();
-            $url = "https://api.weixin.qq.com/cgi-bin/user/info/batchget?access_token=".$access_token."&openid="."$openid"."&lang=zh_CN";
+            $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid="."$openid"."&lang=zh_CN";
             $user = json_encode($this->http_get($url),true);
             if(isset($user['errcode'])){
                 file_put_contents('log.txt',$user['errcode']);
@@ -55,12 +55,12 @@ class TestController extends Controller
                 }
             }
         }
-        $info = $this->getMsg($data,$Content);
+        echo $this->getMsg($data,$Content);
     }
 
     public function getMsg($data,$Content){
         $ToUserName = $data->FromUserName;
-        $FromUserName = $data->$ToUserName;
+        $FromUserName = $data->ToUserName;
         $CreateTime = time();
         $MsgType = "text";
 
@@ -71,9 +71,9 @@ class TestController extends Controller
                   <MsgType><![CDATA[%s]]></MsgType>
                   <Content><![CDATA[%s]]></Content>
                 </xml>";
-        $info = sprintf($xml,$ToUserName,$FromUserName,$CreateTime,$MsgType,$Content);
-        Log::info($info);
-        echo $info;
+        echo sprintf($xml,$ToUserName,$FromUserName,$CreateTime,$MsgType,$Content);
+        //Log::info($info);
+        //echo $info;
     }
 
     /**
