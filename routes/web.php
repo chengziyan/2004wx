@@ -19,5 +19,4 @@ Route::get('/', function () {
 
 Route::get('/test1','TestController@test');
 Route::post('/index','TestController@index');
-Route::post('/xml','TestController@xml');
 Route::get('/token','TestController@getAccessToken');

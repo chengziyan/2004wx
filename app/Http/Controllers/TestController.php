@@ -10,10 +10,6 @@ class TestController extends Controller
     public function test(){
         echo __METHOD__;
     }
-    public function xml(){
-        $res=$this->index();
-        echo $res;
-    }
     public function index(){
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
