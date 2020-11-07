@@ -35,7 +35,7 @@ class TestController extends Controller
             if(isset($user['errcode'])){
                 file_put_contents('log.txt',$user['errcode']);
             }else{
-                $content = '感谢您的关注';
+                $Content = '感谢您的关注';
             }
             $post = new User();
             $data =[
