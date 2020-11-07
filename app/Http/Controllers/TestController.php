@@ -37,7 +37,7 @@ class TestController extends Controller
             }else{
                 if($data->Event == "subscribe"){
                     $post = new User();
-                    $data =[
+                    $datas =[
                         "subscribe"=>$user["subscribe"],
                         "openid"=>$user["openid"],
                         "nickname"=>$user["nickname"],
@@ -50,7 +50,7 @@ class TestController extends Controller
                         "subscribe_time"=>$user["subscribe_time"],
                         "subscribe_scene"=>$user["subscribe_scene"],
                     ];
-                    $name =  $post->insert($data);
+                    $name =  $post->insert($datas);
                     $Content = "谢谢关注";
                 }
             }
