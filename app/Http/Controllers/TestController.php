@@ -37,7 +37,21 @@ class TestController extends Controller
             }else{
                 $content = '感谢您的关注';
             }
-            $post = User::insert($user);
+            $post = new User();
+            $data =[
+                "subscribe"=>$post["subscribe"],
+                "openid"=>$post["openid"],
+                "nickname"=>$post["nickname"],
+                "sex"=>$post["sex"],
+                "city"=>$post["city"],
+                "country"=>$post["country"],
+                "province"=>$post["province"],
+                "language"=>$post["language"],
+                "headimgurl"=>$post["headimgurl"],
+                "subscribe_time"=>$post["subscribe_time"],
+                "subscribe_scene"=>$post["subscribe_scene"],
+            ];
+            $name =  $user->insert($data);
             if($data->Event == "subscribe"){
                 $Content = "谢谢关注";
             }
