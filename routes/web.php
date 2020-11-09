@@ -18,6 +18,10 @@ Route::get('/', function () {
 
 Route::get('/test1','CController@test');
 
-Route::post('/index','TestController@index');
-Route::get('/token','TestController@getAccessToken');
+Route::post('/index','WXController@index');
+Route::get('/token','WXController@getAccessToken');
+Route::get('/guzzle2','WXController@guzzle2');
+
+Route::get('/guzzle1','TestController@guzzle1');
+
 

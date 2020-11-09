@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-//use App\Http\Middleware\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
 use App\Model\User;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Redis;
 
-class TestController extends Controller
+class WXController extends Controller
 {
     public function test(){
         echo __METHOD__;
     }
+
     public function index(){
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
@@ -110,7 +110,7 @@ class TestController extends Controller
         if($token){
             echo "有缓存";echo "<br>";
         }else{
-//            echo "无缓存";
+            echo "无缓存";
             $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".env('WX_APPID')."&secret=".env('WX_APPSEC');
 //            $response = file_get_contents($url);
             $client = new Client();
@@ -125,6 +125,7 @@ class TestController extends Controller
         }
         return $token;
     }
+
     function http_get($url){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);//向那个url地址上面发送
@@ -136,23 +137,15 @@ class TestController extends Controller
         return $output;
     }
 
-    function guzzle1(){
-        $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".env('WX_APPID')."&secret=".env('WX_APPSEC');
-        //使用guzzle发送get请求
-        $client = new Client();
-        $response = $client->request('GET',$url,['verify'=>false]);
-        $json_str = $response->getBody();
-        echo $json_str;
-    }
-
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      * 上传素材
      */
     function guzzle2(){
-        $access_token = "";
+        $access_token = $this->getAccessToken();
         $type = "image";
-        $url = 'https://api.weixin.qq.com/cgi-bin/media/upload?access_token'.$access_token.'=&type'.$type;
+        $url = 'https://api.weixin.qq.com/cgi-bin/media/upload?access_token='.$access_token.'&type='.$type;
+//        echo $url;die;
         $client = new Client();
         $response = $client->request('POST',$url,[
             'verify' => false, //忽略https证书 验证
