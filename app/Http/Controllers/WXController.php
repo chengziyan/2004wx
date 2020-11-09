@@ -111,13 +111,13 @@ class WXController extends Controller
             echo "有缓存";echo "<br>";
         }else{
             echo "无缓存";
-            $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".env('WX_APPID')."&secret=".env('WX_APPSEC');
-//            $response = file_get_contents($url);
-            $client = new Client();
-            $response = $client->request('GET',$url,['verify'=>false]);
-            $json_str = $response->getBody();
+//            $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".env('WX_APPID')."&secret=".env('WX_APPSEC');
+            $response = file_get_contents($url);
+//            $client = new Client();
+//            $response = $client->request('GET',$url,['verify'=>false]);
+//            $json_str = $response->getBody();
 
-            $data = json_decode($json_str,true);
+            $data = json_decode($response,true);
             $token = $data['access_token'];
 
             Redis::set($key,$token);
