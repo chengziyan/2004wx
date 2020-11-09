@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test1','CController@test');
+Route::get('/test1','WXController@test');
 
 Route::post('/index','WXController@index');
 Route::get('/token','WXController@getAccessToken');
