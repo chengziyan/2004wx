@@ -111,7 +111,7 @@ class WXController extends Controller
             echo "有缓存";echo "<br>";
         }else{
             echo "无缓存";
-//            $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".env('WX_APPID')."&secret=".env('WX_APPSEC');
+            $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".env('WX_APPID')."&secret=".env('WX_APPSEC');
             $response = file_get_contents($url);
 //            $client = new Client();
 //            $response = $client->request('GET',$url,['verify'=>false]);
