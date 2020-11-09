@@ -18,8 +18,6 @@ Route::get('/', function () {
 
 Route::get('/test1','CController@test');
 
+Route::post('/index','TestController@index');
+Route::get('/token','TestController@getAccessToken');
 
-Route::prefix('/wx')->group(function (){
-    Route::post('/index','TestController@index');
-    Route::get('/token','TestController@getAccessToken');
-});
