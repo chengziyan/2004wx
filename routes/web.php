@@ -16,7 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test1','CController@test');
 
-Route::get('/test1','TestController@test');
-Route::post('/index','TestController@index');
-Route::get('/token','TestController@getAccessToken');
+
+Route::prefix('/wx')->group(function (){
+    Route::post('/index','TestController@index');
+    Route::get('/token','TestController@getAccessToken');
+});

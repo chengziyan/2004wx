@@ -27,6 +27,7 @@ class TestController extends Controller
             $xml_str=file_get_contents("php://input");
             //Log::info($xml_str);
             $data = simplexml_load_string($xml_str,"SimpleXMLElement",LIBXML_NOCDATA);
+
             //用户扫码的openid
             $openid = $data->FromUserName;
             $access_token = $this->getAccessToken();
@@ -37,10 +38,9 @@ class TestController extends Controller
             }else{
                 if($data->Event == "subscribe"){
                     $first = User::where("openid",$user['openid'])->first();
-
                     if($first){
                         $datas =[
-                            "subscribe"=>$user["subscribe"],
+                            "subscribe"=>1,
                             "openid"=>$user["openid"],
                             "nickname"=>$user["nickname"],
                             "sex"=>$user["sex"],
@@ -52,13 +52,9 @@ class TestController extends Controller
                             "subscribe_time"=>$user["subscribe_time"],
                             "subscribe_scene"=>$user["subscribe_scene"],
                         ];
-
                         User::where("openid",$user['openid'])->update($datas);
-                        $Content = "欢迎挫回来";
-
-
+                        $Content = "欢迎回来";
                     }else {
-
                         $post = new User();
                         $datas = [
                             "subscribe" => $user["subscribe"],
@@ -79,7 +75,6 @@ class TestController extends Controller
                 }else{
                     User::where("openid",$user['openid'])->update(["subscribe"=>0]);
                     $Content = "取关成功";
-
                 }
             }
         }
