@@ -79,6 +79,7 @@ class WXController extends Controller
             }
         }
         echo $this->getMsg($data,$Content);
+        $data=$this->getMenu();
     }
 
     public function getMsg($data,$Content){
