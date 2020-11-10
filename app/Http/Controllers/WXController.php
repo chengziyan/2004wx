@@ -28,7 +28,6 @@ class WXController extends Controller
             $xml_str=file_get_contents("php://input");
             //Log::info($xml_str);
             $data = simplexml_load_string($xml_str,"SimpleXMLElement",LIBXML_NOCDATA);
-
             //用户扫码的openid
             $openid = $data->FromUserName;
             $access_token = $this->getAccessToken();
@@ -79,6 +78,7 @@ class WXController extends Controller
                 }
             }
         }
+        echo $this->getMenu();
         echo $this->getMsg($data,$Content);
     }
 
@@ -96,8 +96,55 @@ class WXController extends Controller
                   <Content><![CDATA[%s]]></Content>
                 </xml>";
         echo sprintf($xml,$ToUserName,$FromUserName,$CreateTime,$MsgType,$Content);
-        //Log::info($info);
-        //echo $info;
+    }
+
+    public function getMenu(){
+        $access_token = $this->getAccessToken();
+        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$access_token;
+        $menu = [
+            'button'=>[
+                [
+                    'type'=>'click',
+                    'name'=>'点我',
+                    'key'=>'wx_song'
+                ],
+                [
+                    'name'=>'菜单',
+                    'sub_button'=>[
+                        [
+                            'type'=>'click',
+                            'name'=>'搜索',
+                            'url'=>'https://www.baidu.com'
+                        ],
+                        [
+                            'type'=>'pic_sysphoto',
+                            'name'=>'系统拍照发图',
+                            'key'=>'rselfmenu_1_0',
+                            'sub_button'=>[]
+                        ],
+                        [
+                            'type'=>'pic_photo_or_album',
+                            'name'=>'拍照或者相册发图',
+                            'key'=>'rselfmenu_1_1',
+                            'sub_button'=>[]
+                        ],
+                        [
+                            'type'=>'pic_weixin',
+                            'name'=>'微信相册发图',
+                            'key'=>'rselfmenu_1_2',
+                            'sub_button'=>[]
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        $client = new Client();
+        $resopnse = $client->request('POST',$url,[
+            'verify'=>false,
+            'body'=>json_encode($menu)
+        ]);
+        $data = $resopnse->getBody();
+        return $data;
     }
 
     /**
