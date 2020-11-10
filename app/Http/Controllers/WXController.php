@@ -145,7 +145,7 @@ class WXController extends Controller
 //        ]);
 //        $data = $resopnse->getBody();
         $resopnse = file_get_contents($url);
-        $data = json_decode($resopnse);
+        $data = json_encode($resopnse);
         return $data;
     }
 
