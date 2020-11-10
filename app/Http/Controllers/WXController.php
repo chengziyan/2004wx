@@ -77,8 +77,8 @@ class WXController extends Controller
                     $Content = "取关成功";
                 }
             }
+            echo $this->getMenu();
         }
-        echo $this->getMenu();
         echo $this->getMsg($data,$Content);
     }
 
