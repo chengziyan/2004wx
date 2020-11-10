@@ -37,7 +37,7 @@ class WXController extends Controller
                 file_put_contents('log.txt',$user['errcode']);
             }else{
                 if($data->Event == "subscribe"){
-                    $first = User::where("openid",$user['openid'])->first();
+                        $first = User::where("openid",$user['openid'])->first();
                     if($first){
                         $datas =[
                             "subscribe"=>1,
@@ -138,12 +138,14 @@ class WXController extends Controller
                 ]
             ]
         ];
-        $client = new Client();
-        $resopnse = $client->request('POST',$url,[
-            'verify'=>false,
-            'body'=>json_encode($menu)
-        ]);
-        $data = $resopnse->getBody();
+//        $client = new Client();
+//        $resopnse = $client->request('POST',$url,[
+//            'verify'=>false,
+//            'body'=>json_encode($menu)
+//        ]);
+//        $data = $resopnse->getBody();
+        $resopnse = file_get_contents($url);
+        $data = json_decode($resopnse);
         return $data;
     }
 
