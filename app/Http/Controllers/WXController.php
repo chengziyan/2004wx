@@ -105,8 +105,8 @@ class WXController extends Controller
              "button":[
              {	
                   "type":"click",
-                  "name":"今日歌曲",
-                  "key":"V1001_TODAY_MUSIC"
+                  "name":"天气",
+                  "key":"WX_weather"
               },
               {
                    "name":"菜单",
