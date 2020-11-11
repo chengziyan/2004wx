@@ -79,13 +79,13 @@ class WXController extends Controller
                         $name = $post->insert($datas);
                         $Content = "谢谢关注";
                     }
-                }else{
+                }else if($data->Event=="unsubscribe"){
                     User::where("openid",$user['openid'])->update(["subscribe"=>0]);
                     $Content = "取关成功";
                 }
-            break;
+                break;
         }
-    echo $this->getMsg($data,$Content);
+        echo $this->getMsg($data,$Content);
     }
 
     public function getMsg($data,$Content){
