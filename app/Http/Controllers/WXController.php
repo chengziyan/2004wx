@@ -123,7 +123,6 @@ class WXController extends Controller
                     }]
                }]
             }';
-        echo $menu;die;
 //        $client = new Client();
 //        $resopnse = $client->request('POST',$url,[
 //            'verify'=>false,
