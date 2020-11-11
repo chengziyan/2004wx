@@ -105,8 +105,8 @@ class WXController extends Controller
              "button":[
              {	
                   "type":"click",
-                  "name":"天气",
-                  "key":"WX_weather"
+                  "name":"今日歌曲",
+                  "key":"V1001_TODAY_MUSIC"
               },
               {
                    "name":"菜单",
@@ -122,7 +122,8 @@ class WXController extends Controller
                        "key":"V1001_GOOD"
                     }]
                }]
-         }';
+            }';
+        echo $menu;die;
 //        $client = new Client();
 //        $resopnse = $client->request('POST',$url,[
 //            'verify'=>false,
