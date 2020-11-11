@@ -101,12 +101,12 @@ class WXController extends Controller
     public function getMenu(){
         $access_token = $this->getAccessToken();
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$access_token;
-        $menu = ' {
+        $menu = '{
              "button":[
              {	
                   "type":"click",
-                  "name":"今日歌曲",
-                  "key":"V1001_TODAY_MUSIC"
+                  "name":"天气",
+                  "key":"WX_WEATHER_00"
               },
               {
                    "name":"菜单",
@@ -114,7 +114,7 @@ class WXController extends Controller
                    {	
                        "type":"view",
                        "name":"搜索",
-                       "url":"http://www.soso.com/"
+                       "url":"http://www.baidu.com/"
                     },
                     {
                        "type":"click",
@@ -122,7 +122,7 @@ class WXController extends Controller
                        "key":"V1001_GOOD"
                     }]
                }]
-            }';
+         }';
 //        $client = new Client();
 //        $resopnse = $client->request('POST',$url,[
 //            'verify'=>false,
