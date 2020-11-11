@@ -19,5 +19,4 @@ class TestController extends WXController
         echo $json_str;
     }
 
-
 }

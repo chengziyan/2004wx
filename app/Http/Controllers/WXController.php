@@ -13,7 +13,7 @@ class WXController extends Controller
         echo __METHOD__;
     }
 
-    public function index(){
+    private function index(){
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
@@ -25,19 +25,25 @@ class WXController extends Controller
         $tmpStr = sha1($tmpStr);
 
         if ($tmpStr == $signature) {
-            $xml_str=file_get_contents("php://input");
-            //Log::info($xml_str);
-            $data = simplexml_load_string($xml_str,"SimpleXMLElement",LIBXML_NOCDATA);
-            //用户扫码的openid
-            $openid = $data->FromUserName;
-            $access_token = $this->getAccessToken();
-            $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid="."$openid"."&lang=zh_CN";
-            $user = json_decode($this->http_get($url),true);
-            if(isset($user['errcode'])){
-                file_put_contents('log.txt',$user['errcode']);
-            }else{
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function wxEvent(){
+        $xml_str=file_get_contents("php://input");
+        $data = simplexml_load_string($xml_str,"SimpleXMLElement",LIBXML_NOCDATA);
+        $msgType = $data->MsgType;
+
+        $openid = $data->FromUserName;
+        $access_token = $this->getAccessToken();
+        $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid="."$openid"."&lang=zh_CN";
+        $user = json_decode($this->http_get($url),true);
+        switch ($msgType){
+            case 'event';
                 if($data->Event == "subscribe"){
-                        $first = User::where("openid",$user['openid'])->first();
+                    $first = User::where("openid",$user['openid'])->first();
                     if($first){
                         $datas =[
                             "subscribe"=>1,
@@ -76,10 +82,9 @@ class WXController extends Controller
                     User::where("openid",$user['openid'])->update(["subscribe"=>0]);
                     $Content = "取关成功";
                 }
-            }
+            break;
         }
-        echo $this->getMsg($data,$Content);
-        echo $this->getMenu();
+
     }
 
     public function getMsg($data,$Content){
@@ -110,7 +115,6 @@ class WXController extends Controller
                     'name' => 'wx2004',
                     'key'  => 'k_wx2004'
                 ],
-
                 [
                     'name'=>'工具',
                     'sub_button'=>[
@@ -128,9 +132,7 @@ class WXController extends Controller
 
                         ]
                     ]
-
                 ],
-
                 [
                     'type' => 'view',
                     'name' => 'BILIBILI',
@@ -138,20 +140,15 @@ class WXController extends Controller
                 ],
             ]
         ];
-//        $client = new Client();
-//        $resopnse = $client->request('POST',$url,[
-//            'verify'=>false,
-//            'body'=>json_encode($menu)
-//        ]);
-//        $data = $resopnse->getBody();
-        $resopnse = file_get_contents($url);
-        $data = json_encode($resopnse);
+        $client = new Client();
+        $resopnse = $client->request('POST',$url,[
+            'verify'=>false,
+            'body'=>json_encode($menu,JSON_UNESCAPED_UNICODE)
+        ]);
+        $data = $resopnse->getBody();
         return $data;
     }
 
-    /**
-     * 获取access_token
-     */
     public function getAccessToken(){
         $key = 'wx:access_token';
         $token = Redis::get($key);
@@ -186,10 +183,6 @@ class WXController extends Controller
         return $output;
     }
 
-    /**
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * 上传素材
-     */
     function guzzle2(){
         $access_token = $this->getAccessToken();
         $type = "image";
