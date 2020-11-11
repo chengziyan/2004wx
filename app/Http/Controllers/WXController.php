@@ -40,6 +40,7 @@ class WXController extends Controller
         $access_token = $this->getAccessToken();
         $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid="."$openid"."&lang=zh_CN";
         $user = json_decode($this->http_get($url),true);
+
         switch ($msgType){
             case 'event';
                 if($data->Event == "subscribe"){
@@ -84,7 +85,7 @@ class WXController extends Controller
                 }
             break;
         }
-
+    echo $this->getMsg($data,$Content);
     }
 
     public function getMsg($data,$Content){
