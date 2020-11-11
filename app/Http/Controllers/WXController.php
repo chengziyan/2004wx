@@ -101,28 +101,43 @@ class WXController extends Controller
     public function getMenu(){
         $access_token = $this->getAccessToken();
         $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$access_token;
-        $menu = '{
-             "button":[
-             {	
-                  "type":"click",
-                  "name":"天气",
-                  "key":"WX_WEATHER_00"
-              },
-              {
-                   "name":"菜单",
-                   "sub_button":[
-                   {	
-                       "type":"view",
-                       "name":"搜索",
-                       "url":"http://www.baidu.com/"
-                    },
-                    {
-                       "type":"click",
-                       "name":"赞一下我们",
-                       "key":"V1001_GOOD"
-                    }]
-               }]
-         }';
+        $menu = [
+
+            'button' => [
+
+                [
+                    'type' => 'click',
+                    'name' => 'wx2004',
+                    'key'  => 'k_wx2004'
+                ],
+
+                [
+                    'name'=>'工具',
+                    'sub_button'=>[
+                        [
+                            'type'=>'view',
+                            'name'=>'百度',
+                            'url'=>'http://www.baidu.com'
+
+                        ],
+
+                        [
+                            'type' => 'click',
+                            'name' => '天气',
+                            'key'  => '10086'
+
+                        ]
+                    ]
+
+                ],
+
+                [
+                    'type' => 'view',
+                    'name' => 'BILIBILI',
+                    'url'  => 'http://www.bilibili.com'
+                ],
+            ]
+        ];
 //        $client = new Client();
 //        $resopnse = $client->request('POST',$url,[
 //            'verify'=>false,
