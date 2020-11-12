@@ -46,22 +46,9 @@ class WXController extends Controller
                     $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" . $access_token . "&openid=" . "$openid" . "&lang=zh_CN";
                     $user = json_decode($this->http_get($url), true);
                     $first = User::where("openid", $user['openid'])->first();
-                    if ($first) {
-                        $datas = [
-                            "subscribe" => 1,
-                            "openid" => $user["openid"],
-                            "nickname" => $user["nickname"],
-                            "sex" => $user["sex"],
-                            "city" => $user["city"],
-                            "country" => $user["country"],
-                            "province" => $user["province"],
-                            "language" => $user["language"],
-                            "headimgurl" => $user["headimgurl"],
-                            "subscribe_time" => $user["subscribe_time"],
-                            "subscribe_scene" => $user["subscribe_scene"],
-                        ];
-                        User::where("openid", $user['openid'])->update($datas);
-                        $Content = "欢迎回来";
+                    if ($first->subscribe=1) {
+                        User::where("openid", $user['openid'])->update($first);
+                        $Contentt = "欢迎回来";
                     } else {
                         $post = new User();
                         $datas = [
@@ -78,13 +65,13 @@ class WXController extends Controller
                             "subscribe_scene" => $user["subscribe_scene"],
                         ];
                         $name = $post->insert($datas);
-                        $Content = "谢谢关注";
+                        $Contentt = "谢谢关注";
                     }
-                    echo $this->getMsg($data, $Content);
                     if ($data->Event == "unsubscribe") {
                         User::where("openid", $user['openid'])->update(["subscribe" => 0]);
-                        $Content = "取关成功";
+                        $Contentt = "取关成功";
                     }
+                    echo $this->getMsg($data, $Contentt);
                     break;
                 }
 
