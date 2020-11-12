@@ -31,39 +31,38 @@ class WXController extends Controller
         }
     }
 
-    public function wxEvent(){
-        $xml_str=file_get_contents("php://input");
-
-        $data = simplexml_load_string($xml_str,"SimpleXMLElement",LIBXML_NOCDATA);
-
+    public function wxEvent()
+    {
+        $xml_str = file_get_contents("php://input");
+        //记录日志
+        file_put_contents('wx_event.log', $xml_str);
+        $data = simplexml_load_string($xml_str, "SimpleXMLElement", LIBXML_NOCDATA);
         $msgType = $data->MsgType;
-
-        $openid = $data->FromUserName;
-        $access_token = $this->getAccessToken();
-        $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=".$access_token."&openid="."$openid"."&lang=zh_CN";
-        $user = json_decode($this->http_get($url),true);
-
-        switch ($msgType){
+        switch ($msgType) {
             case 'event':
-                if($data->Event == "subscribe"){
-                    $first = User::where("openid",$user['openid'])->first();
-                    if($first){
-                        $datas =[
-                            "subscribe"=>1,
-                            "openid"=>$user["openid"],
-                            "nickname"=>$user["nickname"],
-                            "sex"=>$user["sex"],
-                            "city"=>$user["city"],
-                            "country"=>$user["country"],
-                            "province"=>$user["province"],
-                            "language"=>$user["language"],
-                            "headimgurl"=>$user["headimgurl"],
-                            "subscribe_time"=>$user["subscribe_time"],
-                            "subscribe_scene"=>$user["subscribe_scene"],
+                if ($data->Event == "subscribe") {
+                    $openid = $data->FromUserName;
+                    $access_token = $this->getAccessToken();
+                    $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" . $access_token . "&openid=" . "$openid" . "&lang=zh_CN";
+                    $user = json_decode($this->http_get($url), true);
+                    $first = User::where("openid", $user['openid'])->first();
+                    if ($first) {
+                        $datas = [
+                            "subscribe" => 1,
+                            "openid" => $user["openid"],
+                            "nickname" => $user["nickname"],
+                            "sex" => $user["sex"],
+                            "city" => $user["city"],
+                            "country" => $user["country"],
+                            "province" => $user["province"],
+                            "language" => $user["language"],
+                            "headimgurl" => $user["headimgurl"],
+                            "subscribe_time" => $user["subscribe_time"],
+                            "subscribe_scene" => $user["subscribe_scene"],
                         ];
-                        User::where("openid",$user['openid'])->update($datas);
+                        User::where("openid", $user['openid'])->update($datas);
                         $Content = "欢迎回来";
-                    }else {
+                    } else {
                         $post = new User();
                         $datas = [
                             "subscribe" => $user["subscribe"],
@@ -81,13 +80,15 @@ class WXController extends Controller
                         $name = $post->insert($datas);
                         $Content = "谢谢关注";
                     }
-                }else if($data->Event=="unsubscribe"){
-                    User::where("openid",$user['openid'])->update(["subscribe"=>0]);
-                    $Content = "取关成功";
+                    echo $this->getMsg($data, $Content);
+                    if ($data->Event == "unsubscribe") {
+                        User::where("openid", $user['openid'])->update(["subscribe" => 0]);
+                        $Content = "取关成功";
+                    }
+                    break;
                 }
-                break;
+
         }
-        echo $this->getMsg($data,$Content);
     }
 
 
