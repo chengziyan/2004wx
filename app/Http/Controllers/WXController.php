@@ -95,7 +95,6 @@ class WXController extends Controller
                     $Content .= "风力".$today['power']."\n";
                     $Content .= "空气质量指数".$today['aqi']."\n";
                 }
-                file_put_contents("tianqi.txt",$Content);
                 echo $this->getMsg($data,$Content);
                 break;
         }
