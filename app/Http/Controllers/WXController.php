@@ -85,17 +85,18 @@ class WXController extends Controller
                 $key = "082bb9f8a7d308862337d2976f6dd414";
                 $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;
                 $weather = json_decode($this->http_get($url),true);
+                $content = "";
                 if($weather['error_code']==0){
                     $today = $weather['result']['realtime'];
-                    $Content .= "查询天气的城市:".$weather['result']['city']."\n";
-                    $Content .= "天气详细情况".$today['info']."\n";
-                    $Content .= "温度".$today['temperature']."\n";
-                    $Content .= "湿度".$today['humidity']."\n";
-                    $Content .= "风向".$today['direct']."\n";
-                    $Content .= "风力".$today['power']."\n";
-                    $Content .= "空气质量指数".$today['aqi']."\n";
+                    $content .= "查询天气的城市:".$weather['result']['city']."\n";
+                    $content .= "天气详细情况".$today['info']."\n";
+                    $content .= "温度".$today['temperature']."\n";
+                    $content .= "湿度".$today['humidity']."\n";
+                    $content .= "风向".$today['direct']."\n";
+                    $content .= "风力".$today['power']."\n";
+                    $content .= "空气质量指数".$today['aqi']."\n";
                 }
-                echo $this->getMsg($data,$Content);
+                echo $this->getMsg($data,$content);
                 break;
         }
     }
