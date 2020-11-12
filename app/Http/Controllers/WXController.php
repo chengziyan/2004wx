@@ -92,6 +92,7 @@ class WXController extends Controller
                 break;
         }
         echo $this->getMsg($data,$Content);
+        echo $this->responseImage($data,$mediaId);
     }
 
     public function responseImage($data,$mediaId){
