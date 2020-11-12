@@ -77,9 +77,27 @@ class WXController extends Controller
                         }
                         echo $this->getMsg($data, $Contentt);
                         break;
-                    }
 
+                    }
                 }
+            case 'text':
+                $city = urlencode(str_replace("天气:","",$data->Content));
+                $key = "082bb9f8a7d308862337d2976f6dd414";
+                $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;
+                $weather = json_decode($this->http_get($url),true);
+                if($weather['error_code']==0){
+                    $today = $weather['result']['realtime'];
+                    $Content .= "查询天气的城市:".$weather['result']['city']."\n";
+                    $Content .= "天气详细情况".$today['info']."\n";
+                    $Content .= "温度".$today['temperature']."\n";
+                    $Content .= "湿度".$today['humidity']."\n";
+                    $Content .= "风向".$today['direct']."\n";
+                    $Content .= "风力".$today['power']."\n";
+                    $Content .= "空气质量指数".$today['aqi']."\n";
+                }
+                file_put_contents("tianqi.txt",$Content);
+                echo $this->getMsg($data,$Content);
+                break;
         }
     }
 
@@ -125,7 +143,7 @@ class WXController extends Controller
                         [
                             'type' => 'click',
                             'name' => '天气',
-                            'key'  => '10086'
+                            'key'  => 'WX_WEATHER'
 
                         ]
                     ]
