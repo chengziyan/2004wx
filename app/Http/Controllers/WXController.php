@@ -86,31 +86,10 @@ class WXController extends Controller
                     $Content = "取关成功";
                 }
                 break;
-            case 'image':
-                $mediaId = $data->MediaId;
-                echo $this->responseImage($data,$mediaId);
-                break;
         }
         echo $this->getMsg($data,$Content);
     }
 
-    public function responseImage($data,$mediaId){
-        $FromUserName = $data->ToUserName;
-        $ToUserName = $data->FromUserName;
-        $time = time();
-        $MsgType = "image";
-        $template = "<xml>
-                  <ToUserName><![CDATA[%s]]></ToUserName>
-                  <FromUserName><![CDATA[%s]]></FromUserName>
-                  <CreateTime>%s</CreateTime>
-                  <MsgType><![CDATA[%s]]></MsgType>
-                  <Image>
-                    <MediaId><![CDATA[%s]]></MediaId>
-                  </Image>
-                </xml>";
-        echo sprintf($FromUserName,$ToUserName,$time,$MsgType,$template,$mediaId);
-
-    }
 
     public function getMsg($data,$Content){
         $ToUserName = $data->FromUserName;
