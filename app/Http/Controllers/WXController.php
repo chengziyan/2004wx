@@ -52,7 +52,7 @@ class WXController extends Controller
                         if ($user_id) {
                             $user_id->subscribe = 1;
                             $user_id->save();
-                            $Contentt = "感谢再次关注";
+                            $Contentt = "欢迎回来！";
                         } else {
                             $post = new User();
                             $datas = [
@@ -96,6 +96,7 @@ class WXController extends Controller
                     $content .= "风力".$today['power']."\n";
                     $content .= "空气质量指数".$today['aqi']."\n";
                 }
+                file_put_contents("weacher.log",$content);
                 echo $this->getMsg($data,$content);
                 break;
         }
