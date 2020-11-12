@@ -33,7 +33,10 @@ class WXController extends Controller
 
     public function wxEvent(){
         $xml_str=file_get_contents("php://input");
+        //记录日志
+        file_put_contents('wx_event.log',$xml_str,FILE_APPEND);
         $data = simplexml_load_string($xml_str,"SimpleXMLElement",LIBXML_NOCDATA);
+
         $msgType = $data->MsgType;
 
         $openid = $data->FromUserName;
@@ -42,7 +45,7 @@ class WXController extends Controller
         $user = json_decode($this->http_get($url),true);
 
         switch ($msgType){
-            case 'event';
+            case 'event':
                 if($data->Event == "subscribe"){
                     $first = User::where("openid",$user['openid'])->first();
                     if($first){
@@ -84,8 +87,30 @@ class WXController extends Controller
                     $Content = "取关成功";
                 }
                 break;
+            case 'image':
+                $mediaId = $data->MediaId;
+                echo $this->responseImage($data,$mediaId);
+                break;
         }
         echo $this->getMsg($data,$Content);
+    }
+
+    public function responseImage($data,$mediaId){
+        $FromUserName = $data->ToUserName;
+        $ToUserName = $data->FromUserName;
+        $time = time();
+        $MsgType = "image";
+        $template = "<xml>
+                  <ToUserName><![CDATA[%s]]></ToUserName>
+                  <FromUserName><![CDATA[%s]]></FromUserName>
+                  <CreateTime>%s</CreateTime>
+                  <MsgType><![CDATA[%s]]></MsgType>
+                  <Image>
+                    <MediaId><![CDATA[%s]]></MediaId>
+                  </Image>
+                </xml>";
+        echo sprintf($FromUserName,$ToUserName,$time,$MsgType,$template,$mediaId);
+
     }
 
     public function getMsg($data,$Content){

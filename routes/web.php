@@ -24,6 +24,7 @@ Route::prefix('/index')->group(function (){
     Route::get('/token','WXController@getAccessToken');
     Route::get('/guzzle2','WXController@guzzle2');
     Route::get('/getMenu','WXController@getMenu');
+    Route::any('/image','WXController@responseImage');
 });
 
 Route::get('/guzzle1','TestController@guzzle1');
