@@ -99,6 +99,7 @@ class WXController extends Controller
                 file_put_contents("weacher.log",$content);
                 echo $this->getMsg($data,$content);
                 break;
+                echo $this->getMenu();
         }
     }
 
