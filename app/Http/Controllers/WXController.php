@@ -45,40 +45,41 @@ class WXController extends Controller
                     $access_token = $this->getAccessToken();
                     $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" . $access_token . "&openid=" . "$openid" . "&lang=zh_CN";
                     $user = json_decode($this->http_get($url), true);
-                    if(isset($res['errcode'])){
-                        file_put_contents('wx_event.log',$res['errcode']);
-                    }else{
-                        $user_id = User::where('openid',$openid)->first();
-                        if($user_id){
-                            $user_id->subscribe=1;
+                    if (isset($res['errcode'])) {
+                        file_put_contents('wx_event.log', $res['errcode']);
+                    } else {
+                        $user_id = User::where('openid', $openid)->first();
+                        if ($user_id) {
+                            $user_id->subscribe = 1;
                             $user_id->save();
                             $Contentt = "感谢再次关注";
-                        }else {
-                        $post = new User();
-                        $datas = [
-                            "subscribe" => $user["subscribe"],
-                            "openid" => $user["openid"],
-                            "nickname" => $user["nickname"],
-                            "sex" => $user["sex"],
-                            "city" => $user["city"],
-                            "country" => $user["country"],
-                            "province" => $user["province"],
-                            "language" => $user["language"],
-                            "headimgurl" => $user["headimgurl"],
-                            "subscribe_time" => $user["subscribe_time"],
-                            "subscribe_scene" => $user["subscribe_scene"],
-                        ];
-                        $name = $post->insert($datas);
-                        $Contentt = "谢谢关注";
+                        } else {
+                            $post = new User();
+                            $datas = [
+                                "subscribe" => $user["subscribe"],
+                                "openid" => $user["openid"],
+                                "nickname" => $user["nickname"],
+                                "sex" => $user["sex"],
+                                "city" => $user["city"],
+                                "country" => $user["country"],
+                                "province" => $user["province"],
+                                "language" => $user["language"],
+                                "headimgurl" => $user["headimgurl"],
+                                "subscribe_time" => $user["subscribe_time"],
+                                "subscribe_scene" => $user["subscribe_scene"],
+                            ];
+                            $name = $post->insert($datas);
+                            $Contentt = "谢谢关注";
+                        }
+                        if ($data->Event == "unsubscribe") {
+                            User::where("openid", $user['openid'])->update(["subscribe" => 0]);
+                            $Contentt = "取关成功";
+                        }
+                        echo $this->getMsg($data, $Contentt);
+                        break;
                     }
-                    if ($data->Event == "unsubscribe") {
-                        User::where("openid", $user['openid'])->update(["subscribe" => 0]);
-                        $Contentt = "取关成功";
-                    }
-                    echo $this->getMsg($data, $Contentt);
-                    break;
-                }
 
+                }
         }
     }
 
