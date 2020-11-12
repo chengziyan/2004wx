@@ -33,10 +33,7 @@ class WXController extends Controller
 
     public function wxEvent(){
         $xml_str=file_get_contents("php://input");
-        // 记录日志
-        $log_str = date('Y-m-d H:i:s') . ' >>>>>  ' . $xml_str ." \n\n";
-        file_put_contents('wx_event.log',$log_str,FILE_APPEND);
-        
+
         $data = simplexml_load_string($xml_str,"SimpleXMLElement",LIBXML_NOCDATA);
 
         $msgType = $data->MsgType;
