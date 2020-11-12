@@ -45,11 +45,15 @@ class WXController extends Controller
                     $access_token = $this->getAccessToken();
                     $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" . $access_token . "&openid=" . "$openid" . "&lang=zh_CN";
                     $user = json_decode($this->http_get($url), true);
-                    $first = User::where("openid", $user['openid'])->first();
-                    if ($first->subscribe=1) {
-                        User::where("openid", $user['openid'])->update($first);
-                        $Contentt = "欢迎回来";
-                    } else {
+                    if(isset($res['errcode'])){
+                        file_put_contents('wx_event.log',$res['errcode']);
+                    }else{
+                        $user_id = User::where('openid',$openid)->first();
+                        if($user_id){
+                            $user_id->subscribe=1;
+                            $user_id->save();
+                            $Contentt = "感谢再次关注";
+                        }else {
                         $post = new User();
                         $datas = [
                             "subscribe" => $user["subscribe"],
