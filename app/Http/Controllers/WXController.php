@@ -96,10 +96,9 @@ class WXController extends Controller
                     $content .= "风力".$today['power']."\n";
                     $content .= "空气质量指数".$today['aqi']."\n";
                 }
-                file_put_contents("weacher.log",$content);
+                file_put_contents("weacher.log",$xml_str);
                 echo $this->getMsg($data,$content);
                 break;
-                echo $this->getMenu();
         }
     }
 
