@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\User;
+use App\Model\Media;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Redis;
 
@@ -45,8 +46,8 @@ class WXController extends Controller
                     $access_token = $this->getAccessToken();
                     $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" . $access_token . "&openid=" . "$openid" . "&lang=zh_CN";
                     $user = json_decode($this->http_get($url), true);
-                    if (isset($res['errcode'])) {
-                        file_put_contents('wx_event.log', $res['errcode']);
+                    if (isset($user['errcode'])) {
+                        file_put_contents('wx_event.log', $user['errcode']);
                     } else {
                         $user_id = User::where('openid', $openid)->first();
                         if ($user_id) {
@@ -81,6 +82,7 @@ class WXController extends Controller
                     }
                 }
             case 'text':
+
                 if($data->Content=="天气"){
                     $content = "请输入您想查询的城市的天气，比如'北京'";
                 }else {
@@ -103,10 +105,36 @@ class WXController extends Controller
                 file_put_contents("weacher.log",$xml_str);
                 echo $this->getMsg($data,$content);
                 break;
+            case 'image':
+                $Content = "图片";
+                echo $this->responseImg($data,$Content);
+                break;
         }
     }
 
+    public function responseImg($data){
+        $datas = [
+            "tousername"=>$data->ToUserName,
+            "fromusername"=>$data->FromUserName,
+            "createtime"=>$data->CreateTime,
+            "msgtype"=>$data->MsgType,
+            "picurl"=>$data->PicUrl,
+            "msgid" =>$data->MsgId,
+            "mediaid"=>$data->MediaId,
+        ];
+        $image = new Media();
+        $images = Media::where('picurl',$datas['picurl'])->first();
+        if(!$images){
+            $images=$image->insert($datas);
+        }
 
+        $token = $this->getAccessToken();
+        $media = $data->MediaId;
+        $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$token."&media_id=".$media;
+        $url = file_get_contents($url);
+        file_put_contents("image.jpg",$url);
+        echo $url;
+    }
     public function getMsg($data,$Content){
         $ToUserName = $data->FromUserName;
         $FromUserName = $data->ToUserName;
@@ -168,6 +196,7 @@ class WXController extends Controller
         $data = $resopnse->getBody();
         return $data;
     }
+
 
     public function getAccessToken(){
         $key = 'wx:access_token';
