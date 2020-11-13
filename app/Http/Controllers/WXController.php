@@ -81,20 +81,24 @@ class WXController extends Controller
                     }
                 }
             case 'text':
-                $city = urlencode(str_replace("天气:","",$data->Content));
-                $key = "082bb9f8a7d308862337d2976f6dd414";
-                $url = "http://apis.juhe.cn/simpleWeather/query?city=".$city."&key=".$key;
-                $weather = json_decode($this->http_get($url),true);
-                $content = "";
-                if($weather['error_code']==0){
-                    $today = $weather['result']['realtime'];
-                    $content .= "查询天气的城市:".$weather['result']['city']."\n";
-                    $content .= "天气详细情况".$today['info']."\n";
-                    $content .= "温度".$today['temperature']."\n";
-                    $content .= "湿度".$today['humidity']."\n";
-                    $content .= "风向".$today['direct']."\n";
-                    $content .= "风力".$today['power']."\n";
-                    $content .= "空气质量指数".$today['aqi']."\n";
+                if($data->Content=="天气"){
+                    $content = "请输入您想查询的城市的天气，比如'北京'";
+                }else {
+                    $city = urlencode($data->Content);
+                    $key = "082bb9f8a7d308862337d2976f6dd414";
+                    $url = "http://apis.juhe.cn/simpleWeather/query?city=" . $city . "&key=" . $key;
+                    $weather = json_decode($this->http_get($url), true);
+                    $content = "";
+                    if ($weather['error_code'] == 0) {
+                        $today = $weather['result']['realtime'];
+                        $content .= "查询天气的城市:" . $weather['result']['city'] . "\n";
+                        $content .= "天气详细情况" . $today['info'] . "\n";
+                        $content .= "温度" . $today['temperature'] . "\n";
+                        $content .= "湿度" . $today['humidity'] . "\n";
+                        $content .= "风向" . $today['direct'] . "\n";
+                        $content .= "风力" . $today['power'] . "\n";
+                        $content .= "空气质量指数" . $today['aqi'] . "\n";
+                    }
                 }
                 file_put_contents("weacher.log",$xml_str);
                 echo $this->getMsg($data,$content);
