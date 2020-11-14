@@ -34,7 +34,7 @@ class WXController extends Controller
     }
 
     public function quote(){
-        echo $this->getMenu();
+        $this->getMenu();
     }
 
     public function wxEvent()
@@ -225,7 +225,7 @@ class WXController extends Controller
 //        ]);
 //        $data = $resopnse->getBody();
         $response = file_get_contents($url);
-        $data = json_decode($response,true);
+        $data = json_encode($response,true);
         return $data;
     }
 
