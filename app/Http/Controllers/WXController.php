@@ -79,7 +79,6 @@ class WXController extends Controller
                         }
                         echo $this->getMsg($data, $Contentt);
                         break;
-
                     }
                 }
             case 'text':
@@ -134,7 +133,7 @@ class WXController extends Controller
             $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=" . $access_token . "&media_id=" . $data->MediaId;
             $get = file_get_contents($url);
             file_put_contents("voice.amr", $get);
-            $Content = "是语音哦~";
+            $Content = "语音";
             $this->getMsg($data, $Content);
         } else if ($msgType == "video") {
             $access_token = $this->getAccessToken();
@@ -142,7 +141,7 @@ class WXController extends Controller
             $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=" . $access_token . "&media_id=" . $data->MediaId;
             $get = file_get_contents($url);
             file_put_contents("video.mp4", $get);
-            $Content = "是视频呀-";
+            $Content = "视频";
             $this->getMsg($data, $Content);
         } else if ($msgType == "CLICK") {
             if ($data->EventKey == "V1001_TODAY_QQ") {
@@ -152,17 +151,18 @@ class WXController extends Controller
                 $slsMember = Redis::sismember($key, $openid);
                 //是成员元素  返回 1  已签到
                 if ($slsMember == "1") {
-                    $Content = "已签到过啦！";
+                    $Content = "已签到过了哦！";
                     $this->getMsg($data, $Content);
                 } else {
                     $Content = "签到成功";
                     Redis::sAdd($key, $openid);
                     $this->getMsg($data, $Content);
+                    $this->getMenu();
                 }
 //                Log::info("=====slemenber=======".$slsMember);
             }
         }
-        echo $this->getMenu();
+
     }
 
 
