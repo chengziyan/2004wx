@@ -7,6 +7,7 @@ use App\Model\User;
 use App\Model\Media;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Redis;
+use Log;
 
 class WXController extends Controller
 {
@@ -82,7 +83,6 @@ class WXController extends Controller
                     }
                 }
             case 'text':
-
                 if($data->Content=="天气"){
                     $content = "请输入您想查询的城市的天气，比如'北京'";
                 }else {
@@ -106,7 +106,7 @@ class WXController extends Controller
                 echo $this->getMsg($data,$content);
                 break;
         }
-        if($msgType=="image"){
+        if($msgType == "image"){
             $datas = [
                 "tousername"=>$data->ToUserName,
                 "fromusername"=>$data->FromUserName,
@@ -128,10 +128,41 @@ class WXController extends Controller
             file_put_contents("image.jpg",$url);
             $Content = "图片";
             echo $this->getMsg($data,$Content);
+        }else if ($msgType == "voice") {
+            $access_token = $this->getAccessToken();
+            Log::info("====语音====" . $access_token);
+            $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=" . $access_token . "&media_id=" . $data->MediaId;
+            $get = file_get_contents($url);
+            file_put_contents("voice.amr", $get);
+            $Content = "是语音哦~";
+            $this->getMsg($data, $Content);
+        } else if ($msgType == "video") {
+            $access_token = $this->getAccessToken();
+            Log::info("====视频====" . $access_token);
+            $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=" . $access_token . "&media_id=" . $data->MediaId;
+            $get = file_get_contents($url);
+            file_put_contents("video.mp4", $get);
+            $Content = "是视频呀-";
+            $this->getMsg($data, $Content);
+        } else if ($msgType == "CLICK") {
+            if ($data->EventKey == "V1001_TODAY_QQ") {
+                $key = "qiandao";
+                $openid = (string)$data->FromUserName;
+                //sismember 命令判断成员元素是否是集合的成员。
+                $slsMember = Redis::sismember($key, $openid);
+                //是成员元素  返回 1  已签到
+                if ($slsMember == "1") {
+                    $Content = "已签到过啦！";
+                    $this->getMsg($data, $Content);
+                } else {
+                    $Content = "签到成功";
+                    Redis::sAdd($key, $openid);
+                    $this->getMsg($data, $Content);
+                }
+//                Log::info("=====slemenber=======".$slsMember);
+            }
         }
     }
-
-
 
 
     public function getMsg($data,$Content){
@@ -159,23 +190,23 @@ class WXController extends Controller
 
                 [
                     'type' => 'click',
-                    'name' => 'wx2004',
-                    'key'  => 'k_wx2004'
+                    'name' => '签到',
+                    'key'  => 'V1001_TODAY_QQ'
                 ],
                 [
-                    'name'=>'工具',
+                    'name'=>'商城',
                     'sub_button'=>[
                         [
                             'type'=>'view',
-                            'name'=>'百度',
-                            'url'=>'http://www.baidu.com'
+                            'name'=>'京东好货',
+                            'url'=>'http://www.jd.com'
 
                         ],
 
                         [
-                            'type' => 'click',
-                            'name' => '天气',
-                            'key'  => 'WX_WEATHER'
+                            'type' => 'view',
+                            'name' => '商城',
+                            'url'=>'http://2004wyr.comcto.com'
 
                         ]
                     ]
