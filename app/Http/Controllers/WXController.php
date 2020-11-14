@@ -105,10 +105,10 @@ class WXController extends Controller
                 file_put_contents("weacher.log",$xml_str);
                 echo $this->getMsg($data,$content);
                 break;
-            case 'image':
-                $Content = "图片";
-                echo $this->responseImg($data,$Content);
-                break;
+        }
+        if($msgType=="image"){
+            $Content = "图片";
+            echo $this->responseImg($data,$Content);
         }
     }
 
@@ -135,6 +135,8 @@ class WXController extends Controller
         file_put_contents("image.jpg",$url);
         echo $url;
     }
+
+
     public function getMsg($data,$Content){
         $ToUserName = $data->FromUserName;
         $FromUserName = $data->ToUserName;
