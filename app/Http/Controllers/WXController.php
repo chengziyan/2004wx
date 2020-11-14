@@ -220,12 +220,14 @@ class WXController extends Controller
                 ],
             ]
         ];
-        $client = new Client();
-        $resopnse = $client->request('POST',$url,[
-            'verify'=>false,
-            'body'=>json_encode($menu,JSON_UNESCAPED_UNICODE)
-        ]);
-        $data = $resopnse->getBody();
+//        $client = new Client();
+//        $resopnse = $client->request('POST',$url,[
+//            'verify'=>false,
+//            'body'=>json_encode($menu,JSON_UNESCAPED_UNICODE)
+//        ]);
+//        $data = $resopnse->getBody();
+        $response = file_get_contents($url);
+        $data = json_decode($response,true);
         return $data;
     }
 
