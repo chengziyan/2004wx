@@ -33,6 +33,10 @@ class WXController extends Controller
         }
     }
 
+    public function quote(){
+        $this->getMenu();
+    }
+
     public function wxEvent()
     {
         $xml_str = file_get_contents("php://input");
@@ -145,11 +149,9 @@ class WXController extends Controller
             $this->getMsg($data, $Content);
         } else if ($msgType == "CLICK") {
             if ($data->EventKey == "V1001_TODAY_QQ") {
-                $key = "qiandao";
+                $key = "siganin";
                 $openid = (string)$data->FromUserName;
-                //sismember 命令判断成员元素是否是集合的成员。
                 $slsMember = Redis::sismember($key, $openid);
-                //是成员元素  返回 1  已签到
                 if ($slsMember == "1") {
                     $Content = "已签到过了哦！";
                     $this->getMsg($data, $Content);
@@ -157,15 +159,11 @@ class WXController extends Controller
                     $Content = "签到成功";
                     Redis::sAdd($key, $openid);
                     $this->getMsg($data, $Content);
-
                 }
 //                Log::info("=====slemenber=======".$slsMember);
             }
         }
-
-        echo $this->getMenu();
     }
-
 
     public function getMsg($data,$Content){
         $ToUserName = $data->FromUserName;
