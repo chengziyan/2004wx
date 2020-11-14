@@ -107,34 +107,31 @@ class WXController extends Controller
                 break;
         }
         if($msgType=="image"){
+            $datas = [
+                "tousername"=>$data->ToUserName,
+                "fromusername"=>$data->FromUserName,
+                "createtime"=>$data->CreateTime,
+                "msgtype"=>$data->MsgType,
+                "picurl"=>$data->PicUrl,
+                "msgid" =>$data->MsgId,
+                "mediaid"=>$data->MediaId,
+            ];
+            $image = new Media();
+            $images = Media::where('picurl',$datas['picurl'])->first();
+            if(!$images){
+                $images=$image->insert($datas);
+            }
+            $token = $this->getAccessToken();
+            $media = $data->MediaId;
+            $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$token."&media_id=".$media;
+            $url = file_get_contents($url);
+            file_put_contents("image.jpg",$url);
             $Content = "图片";
-            echo $this->responseImg($data,$Content);
+            echo $this->getMsg($data,$Content);
         }
     }
 
-    public function responseImg($data){
-        $datas = [
-            "tousername"=>$data->ToUserName,
-            "fromusername"=>$data->FromUserName,
-            "createtime"=>$data->CreateTime,
-            "msgtype"=>$data->MsgType,
-            "picurl"=>$data->PicUrl,
-            "msgid" =>$data->MsgId,
-            "mediaid"=>$data->MediaId,
-        ];
-        $image = new Media();
-        $images = Media::where('picurl',$datas['picurl'])->first();
-        if(!$images){
-            $images=$image->insert($datas);
-        }
 
-        $token = $this->getAccessToken();
-        $media = $data->MediaId;
-        $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$token."&media_id=".$media;
-        $url = file_get_contents($url);
-        file_put_contents("image.jpg",$url);
-        echo $url;
-    }
 
 
     public function getMsg($data,$Content){
