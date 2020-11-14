@@ -224,7 +224,7 @@ class WXController extends Controller
 //            'body'=>json_encode($menu,JSON_UNESCAPED_UNICODE)
 //        ]);
 //        $data = $resopnse->getBody();
-            $data = curl($url,$menu);
+        $data = $this->curl($url,$menu);
         return $data;
     }
 
@@ -300,4 +300,6 @@ class WXController extends Controller
         curl_close($ch);
         return $output;
     }
+
+
 }
