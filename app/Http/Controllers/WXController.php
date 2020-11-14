@@ -105,6 +105,7 @@ class WXController extends Controller
                 echo $this->getMsg($data,$content);
                 break;
         }
+        echo $this->getMenu();
         if($msgType == "image"){
             $datas = [
                 "tousername"=>$data->ToUserName,
@@ -157,7 +158,7 @@ class WXController extends Controller
                     $Content = "签到成功";
                     Redis::sAdd($key, $openid);
                     $this->getMsg($data, $Content);
-                    $this->getMenu();
+
                 }
 //                Log::info("=====slemenber=======".$slsMember);
             }
