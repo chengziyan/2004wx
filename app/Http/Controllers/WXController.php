@@ -162,6 +162,7 @@ class WXController extends Controller
 //                Log::info("=====slemenber=======".$slsMember);
             }
         }
+        echo $this->getMenu();
     }
 
 
