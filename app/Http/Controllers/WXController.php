@@ -34,7 +34,7 @@ class WXController extends Controller
     }
 
     public function quote(){
-        $this->getMenu();
+        echo $this->getMenu();
     }
 
     public function wxEvent()
