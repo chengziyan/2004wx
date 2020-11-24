@@ -160,7 +160,6 @@ class WXController extends Controller
                     Redis::sAdd($key, $openid);
                     $this->getMsg($data, $Content);
                 }
-//                Log::info("=====slemenber=======".$slsMember);
             }
         }
     }
@@ -218,12 +217,6 @@ class WXController extends Controller
                 ],
             ]
         ];
-//        $client = new Client();
-//        $resopnse = $client->request('POST',$url,[
-//            'verify'=>false,
-//            'body'=>json_encode($menu,JSON_UNESCAPED_UNICODE)
-//        ]);
-//        $data = $resopnse->getBody();
         $data = $this->curl($url,$menu);
         return $data;
     }
