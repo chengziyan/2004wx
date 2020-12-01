@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69272348-35d2-47c2-9241-e1a7c1a689ed" name="Default Changelist" comment="" />
+    <list default="true" id="69272348-35d2-47c2-9241-e1a7c1a689ed" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,33 +15,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+            <state relative-caret-position="195">
+              <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xcx/ApiController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="266" column="62" lean-forward="true" selection-start-line="266" selection-start-column="62" selection-end-line="266" selection-end-column="62" />
-              <folding>
-                <element signature="e#261#438#0#PHP" />
-                <element signature="e#527#2534#0#PHP" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="453">
-              <caret line="168" selection-start-line="168" selection-end-line="168" />
+            <state relative-caret-position="160">
+              <caret line="35" column="27" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="27" />
               <folding>
                 <element signature="e#803#7000#0#PHP" />
                 <element signature="e#7006#7596#0#PHP" />
@@ -67,8 +56,8 @@
         <option value="$PROJECT_DIR$/app/Model/Goods.php" />
         <option value="$PROJECT_DIR$/app/Model/Cart.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Xcx/ApiController.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/WXController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
       </list>
     </option>
   </component>
@@ -285,12 +274,12 @@
       <workItem from="1605931400335" duration="31000" />
       <workItem from="1606109840487" duration="36736000" />
       <workItem from="1606696542476" duration="8316000" />
-      <workItem from="1606789407981" duration="2486000" />
+      <workItem from="1606789407981" duration="2882000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82855000" />
+    <option name="totallyTimeSpent" value="83251000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -419,17 +408,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="168" selection-start-line="168" selection-end-line="168" />
+        <state relative-caret-position="160">
+          <caret line="35" column="27" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="27" />
           <folding>
             <element signature="e#803#7000#0#PHP" />
             <element signature="e#7006#7596#0#PHP" />
@@ -437,6 +419,13 @@
             <element signature="e#9991#10605#0#PHP" />
             <element signature="e#10611#11137#0#PHP" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
         </state>
       </provider>
     </entry>
