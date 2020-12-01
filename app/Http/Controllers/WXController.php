@@ -15,7 +15,7 @@ class WXController extends Controller
         echo __METHOD__;
     }
 
-    private function index(){
+    public function index(){
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
@@ -33,9 +33,6 @@ class WXController extends Controller
         }
     }
 
-//    public function quote(){
-//        $this->getMenu();
-//    }
 
     public function wxEvent()
     {
