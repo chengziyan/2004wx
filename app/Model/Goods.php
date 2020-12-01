@@ -8,5 +8,5 @@ class Goods extends Model
 {
     //
     protected $table = 'p_goods';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'goods_id';
 }

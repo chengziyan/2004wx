@@ -31,11 +31,17 @@ Route::get('/guzzle1','TestController@guzzle1');
 
 Route::prefix('xcx')->group(function (){
     Route::get('/test','Xcx\ApiController@test');   //小程序测试
-    Route::any('/login','Xcx\ApiController@login');   //小程序登录
+    Route::post('/login','Xcx\ApiController@userLogin');   //小程序个人中心登录
+    Route::get('homelogin','Xcx\ApiController@homeLogin');  //小程序首页登录
     Route::get('/goodslist','Xcx\ApiController@goodsList'); //小程序商品列表
     Route::get('/detail','Xcx\ApiController@detail'); //小程序商品列表
-    Route::get('/cart','Xcx\ApiController@cart'); //小程序商品购物车
+    Route::get('addFav','Xcx\ApiController@addFav');    //商品收藏
+    Route::get('addcart','Xcx\ApiController@addCart');    //加入购物车
+    Route::get('cartlist','Xcx\ApiController@cartList');    //购物车列表
+    Route::get('del-cart','Xcx\ApiController@delCart');    //删除购物车列表商品
 
 });
+
+
 
 

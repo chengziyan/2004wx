@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69272348-35d2-47c2-9241-e1a7c1a689ed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WXController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WXController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Xcx/ApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Xcx/ApiController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Model/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Goods.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,8 +21,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="295">
-              <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+            <state relative-caret-position="355">
+              <caret line="36" column="61" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -35,9 +37,13 @@
       <list>
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/app/Model/XcxUser.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/api/ApiController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Weixin/ApiController.php" />
+        <option value="$PROJECT_DIR$/public/test/test.html" />
         <option value="$PROJECT_DIR$/app/Model/Goods.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Model/Cart.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Xcx/ApiController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
       </list>
     </option>
   </component>
@@ -144,17 +150,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
     </include_path>
   </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/weixin.iml" />
-        <option value="$PROJECT_DIR$/.idea/php.xml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
-      </list>
-    </option>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
@@ -194,16 +189,7 @@
             <path>
               <item name="weixin" type="b2602c69:ProjectViewProjectNode" />
               <item name="weixin" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-              <item name="Xcx" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="weixin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="weixin" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="weixin" type="b2602c69:ProjectViewProjectNode" />
@@ -224,12 +210,13 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -263,12 +250,14 @@
       <workItem from="1605656183993" duration="9899000" />
       <workItem from="1605747214962" duration="19683000" />
       <workItem from="1605931400335" duration="31000" />
-      <workItem from="1606109840487" duration="7653000" />
+      <workItem from="1606109840487" duration="36736000" />
+      <workItem from="1606696542476" duration="8316000" />
+      <workItem from="1606789407981" duration="506000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42970000" />
+    <option name="totallyTimeSpent" value="80875000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -280,10 +269,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="704" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16950527" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17518248" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -297,12 +285,33 @@
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.329806" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.329806" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17274939" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.329806" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.329806" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.329806" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -315,20 +324,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/XcxUser.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="33" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="9" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Goods.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/XcxUser.php" />
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Controller.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -343,17 +339,63 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Weixin/ApiController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2880">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Kernel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="33" column="73" lean-forward="true" selection-start-line="33" selection-start-column="73" selection-end-line="33" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/test/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Goods.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Cart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xcx/ApiController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="48" column="23" lean-forward="true" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+        <state relative-caret-position="1511">
+          <caret line="221" lean-forward="true" selection-start-line="221" selection-end-line="221" />
+          <folding>
+            <element signature="e#261#438#0#PHP" />
+            <element signature="e#527#2534#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="36" column="10" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
+        <state relative-caret-position="355">
+          <caret line="36" column="61" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
         </state>
       </provider>
     </entry>
