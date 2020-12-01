@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('/test1','WXController@test');
 
-Route::prefix('/index')->group(function (){
+Route::prefix('index')->group(function (){
     Route::get('/','WXController@index');
     Route::post('/','WXController@wxEvent');
     Route::get('/token','WXController@getAccessToken');
