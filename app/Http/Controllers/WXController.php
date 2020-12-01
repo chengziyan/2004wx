@@ -33,9 +33,9 @@ class WXController extends Controller
         }
     }
 
-    public function quote(){
-        $this->getMenu();
-    }
+//    public function quote(){
+//        $this->getMenu();
+//    }
 
     public function wxEvent()
     {
@@ -147,20 +147,6 @@ class WXController extends Controller
             file_put_contents("video.mp4", $get);
             $Content = "视频";
             $this->getMsg($data, $Content);
-        } else if ($msgType == "CLICK") {
-            if ($data->EventKey == "V1001_TODAY_QQ") {
-                $key = "siganin";
-                $openid = (string)$data->FromUserName;
-                $slsMember = Redis::sismember($key, $openid);
-                if ($slsMember == "1") {
-                    $Content = "已签到过了哦！";
-                    $this->getMsg($data, $Content);
-                } else {
-                    $Content = "签到成功";
-                    Redis::sAdd($key, $openid);
-                    $this->getMsg($data, $Content);
-                }
-            }
         }
     }
 
@@ -180,46 +166,46 @@ class WXController extends Controller
         echo sprintf($xml,$ToUserName,$FromUserName,$CreateTime,$MsgType,$Content);
     }
 
-    public function getMenu(){
-        $access_token = $this->getAccessToken();
-        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$access_token;
-        $menu = [
-
-            'button' => [
-
-                [
-                    'type' => 'click',
-                    'name' => '签到',
-                    'key'  => 'V1001_TODAY_QQ'
-                ],
-                [
-                    'name'=>'商城',
-                    'sub_button'=>[
-                        [
-                            'type'=>'view',
-                            'name'=>'京东好货',
-                            'url'=>'http://www.jd.com'
-
-                        ],
-
-                        [
-                            'type' => 'view',
-                            'name' => '商城',
-                            'url'=>'http://2004wyr.comcto.com'
-
-                        ]
-                    ]
-                ],
-                [
-                    'type' => 'view',
-                    'name' => 'BILIBILI',
-                    'url'  => 'http://www.bilibili.com'
-                ],
-            ]
-        ];
-        $data = $this->curl($url,$menu);
-        return $data;
-    }
+//    public function getMenu(){
+//        $access_token = $this->getAccessToken();
+//        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$access_token;
+//        $menu = [
+//
+//            'button' => [
+//
+//                [
+//                    'type' => 'click',
+//                    'name' => '签到',
+//                    'key'  => 'V1001_TODAY_QQ'
+//                ],
+//                [
+//                    'name'=>'商城',
+//                    'sub_button'=>[
+//                        [
+//                            'type'=>'view',
+//                            'name'=>'京东好货',
+//                            'url'=>'http://www.jd.com'
+//
+//                        ],
+//
+//                        [
+//                            'type' => 'view',
+//                            'name' => '商城',
+//                            'url'=>'http://2004wyr.comcto.com'
+//
+//                        ]
+//                    ]
+//                ],
+//                [
+//                    'type' => 'view',
+//                    'name' => 'BILIBILI',
+//                    'url'  => 'http://www.bilibili.com'
+//                ],
+//            ]
+//        ];
+//        $data = $this->curl($url,$menu);
+//        return $data;
+//    }
 
 
     public function getAccessToken(){

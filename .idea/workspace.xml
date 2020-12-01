@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="69272348-35d2-47c2-9241-e1a7c1a689ed" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Xcx/ApiController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Xcx/ApiController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Model/Goods.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Model/Goods.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/WXController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/WXController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,11 +15,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
+            <state relative-caret-position="475">
               <caret line="36" column="61" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xcx/ApiController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="266" column="62" lean-forward="true" selection-start-line="266" selection-start-column="62" selection-end-line="266" selection-end-column="62" />
+              <folding>
+                <element signature="e#261#438#0#PHP" />
+                <element signature="e#527#2534#0#PHP" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="149" column="10" selection-start-line="149" selection-start-column="10" selection-end-line="149" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -44,6 +63,7 @@
         <option value="$PROJECT_DIR$/app/Model/Cart.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Xcx/ApiController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/WXController.php" />
       </list>
     </option>
   </component>
@@ -189,6 +209,14 @@
             <path>
               <item name="weixin" type="b2602c69:ProjectViewProjectNode" />
               <item name="weixin" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="Xcx" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="weixin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="weixin" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -252,12 +280,12 @@
       <workItem from="1605931400335" duration="31000" />
       <workItem from="1606109840487" duration="36736000" />
       <workItem from="1606696542476" duration="8316000" />
-      <workItem from="1606789407981" duration="506000" />
+      <workItem from="1606789407981" duration="1586000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80875000" />
+    <option name="totallyTimeSpent" value="81955000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -269,7 +297,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="704" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="704" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17518248" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -376,8 +405,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Xcx/ApiController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1511">
-          <caret line="221" lean-forward="true" selection-start-line="221" selection-end-line="221" />
+        <state relative-caret-position="400">
+          <caret line="266" column="62" lean-forward="true" selection-start-line="266" selection-start-column="62" selection-end-line="266" selection-end-column="62" />
           <folding>
             <element signature="e#261#438#0#PHP" />
             <element signature="e#527#2534#0#PHP" />
@@ -385,17 +414,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        <state relative-caret-position="475">
+          <caret line="36" column="61" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="36" column="61" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
+        <state relative-caret-position="195">
+          <caret line="149" column="10" selection-start-line="149" selection-start-column="10" selection-end-line="149" selection-end-column="10" />
         </state>
       </provider>
     </entry>
