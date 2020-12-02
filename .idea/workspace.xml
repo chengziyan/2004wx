@@ -27,14 +27,14 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="96" column="38" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
+            <state relative-caret-position="1321">
+              <caret line="213" column="4" selection-start-line="213" selection-start-column="4" selection-end-line="213" selection-end-column="4" />
               <folding>
                 <element signature="e#7006#7596#0#PHP" />
+                <element signature="e#4566#4598#0#PHP" />
                 <element signature="e#8223#9001#0#PHP" />
                 <element signature="e#9565#9985#0#PHP" />
                 <element signature="e#9991#10605#0#PHP" />
-                <element signature="e#10611#11137#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -287,12 +287,12 @@
       <workItem from="1605931400335" duration="31000" />
       <workItem from="1606109840487" duration="36736000" />
       <workItem from="1606696542476" duration="8316000" />
-      <workItem from="1606789407981" duration="14469000" />
+      <workItem from="1606789407981" duration="14745000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94838000" />
+    <option name="totallyTimeSpent" value="95114000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -437,14 +437,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="96" column="38" selection-start-line="96" selection-start-column="38" selection-end-line="96" selection-end-column="38" />
+        <state relative-caret-position="1321">
+          <caret line="213" column="4" selection-start-line="213" selection-start-column="4" selection-end-line="213" selection-end-column="4" />
           <folding>
             <element signature="e#7006#7596#0#PHP" />
+            <element signature="e#4566#4598#0#PHP" />
             <element signature="e#8223#9001#0#PHP" />
             <element signature="e#9565#9985#0#PHP" />
             <element signature="e#9991#10605#0#PHP" />
-            <element signature="e#10611#11137#0#PHP" />
           </folding>
         </state>
       </provider>

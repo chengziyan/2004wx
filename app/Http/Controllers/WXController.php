@@ -211,24 +211,7 @@ class WXController extends Controller
         echo $data;
     }
 
-    function curl($url,$menu){
-        //初始化
-        $ch = curl_init();
-        //设置
-        curl_setopt($ch,CURLOPT_URL,$url);//设置提交地址
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,TRUE);//设置返回值返回字符串
-        curl_setopt($ch,CURLOPT_POST,1);//post提交方式
-        curl_setopt($ch,CURLOPT_POSTFIELDS,$menu);
-        curl_setopt($ch,CURLOPT_SSL_VERIFYPEER,false);
-        curl_setopt($ch,CURLOPT_SSL_VERIFYHOST,false);
-
-
-        //执行
-        $output = curl_exec($ch);
-        //关闭
-        curl_close($ch);
-        return $output;
-    }
+    
 
 
 }
