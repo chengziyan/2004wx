@@ -83,15 +83,15 @@ class WXController extends Controller
                     }
                 }
             case 'text':
-                    $content = urlencode($data->Content);
+                    $content = $data->Content;
                     $appkey = '5eed9b01db7f654c50efce3e7e97ed55';
                     $url = "http://api.tianapi.com/txapi/pinyin/index?key=".$appkey."&text=".$content;
                     $response = json_decode(file_get_contents($url),true);
-                    $content = "";
                     if($response['code']==200){
-                        $content = $response['pinyin']['jianxie'];
-                    }else {
-                        echo "返回错误，状态消息：" . $response['msg'];
+                        $content = "";
+                        foreach ($response  ['newslist'] as $v) {
+                            $content .= '拼音:'.$v['pinyin'].'简写:'.$v['jianxie'];
+                        }
                     }
                 echo $this->getMsg($data,$content);
                 break;
