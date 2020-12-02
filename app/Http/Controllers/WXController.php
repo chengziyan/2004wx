@@ -90,7 +90,7 @@ class WXController extends Controller
                     $response = json_decode(file_get_contents($url),true);
                     $content = '';
                     if($response['code']==200){
-                        print_r($response);
+                        $content .= "查询的拼音：" . $response['pinyin'];
                     }else{
                         echo "返回错误，状态消息：".$response['msg'];
                     }
