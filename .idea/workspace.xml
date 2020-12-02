@@ -19,8 +19,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+            <state relative-caret-position="240">
+              <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -28,25 +28,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+            <state relative-caret-position="335">
+              <caret line="89" column="44" lean-forward="true" selection-start-line="89" selection-start-column="44" selection-end-line="89" selection-end-column="44" />
               <folding>
-                <element signature="e#803#7000#0#PHP" />
                 <element signature="e#7006#7596#0#PHP" />
                 <element signature="e#7020#7052#0#PHP" />
+                <element signature="e#8223#9001#0#PHP" />
                 <element signature="e#9565#9985#0#PHP" />
                 <element signature="e#9991#10605#0#PHP" />
                 <element signature="e#10611#11137#0#PHP" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="22" column="6" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -181,7 +172,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-12" />
     <option name="y" value="-12" />
     <option name="width" value="1269" />
@@ -298,12 +289,12 @@
       <workItem from="1605931400335" duration="31000" />
       <workItem from="1606109840487" duration="36736000" />
       <workItem from="1606696542476" duration="8316000" />
-      <workItem from="1606789407981" duration="4183000" />
+      <workItem from="1606789407981" duration="8266000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84552000" />
+    <option name="totallyTimeSpent" value="88635000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -441,19 +432,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="23" column="44" lean-forward="true" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+        <state relative-caret-position="240">
+          <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="17" column="11" lean-forward="true" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+        <state relative-caret-position="335">
+          <caret line="89" column="44" lean-forward="true" selection-start-line="89" selection-start-column="44" selection-end-line="89" selection-end-column="44" />
           <folding>
-            <element signature="e#803#7000#0#PHP" />
             <element signature="e#7006#7596#0#PHP" />
             <element signature="e#7020#7052#0#PHP" />
+            <element signature="e#8223#9001#0#PHP" />
             <element signature="e#9565#9985#0#PHP" />
             <element signature="e#9991#10605#0#PHP" />
             <element signature="e#10611#11137#0#PHP" />

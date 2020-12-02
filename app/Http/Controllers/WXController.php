@@ -83,68 +83,16 @@ class WXController extends Controller
                     }
                 }
             case 'text':
-                if($data->Content=="天气"){
-                    $content = "请输入您想查询的城市的天气，比如'北京'";
-                }else {
-                    $city = urlencode($data->Content);
-                    $key = "082bb9f8a7d308862337d2976f6dd414";
-                    $url = "http://apis.juhe.cn/simpleWeather/query?city=" . $city . "&key=" . $key;
-                    $weather = json_decode($this->http_get($url), true);
-                    $content = "";
-                    if ($weather['error_code'] == 0) {
-                        $today = $weather['result']['realtime'];
-                        $content .= "查询天气的城市:" . $weather['result']['city'] . "\n";
-                        $content .= "天气详细情况" . $today['info'] . "\n";
-                        $content .= "温度" . $today['temperature'] . "\n";
-                        $content .= "湿度" . $today['humidity'] . "\n";
-                        $content .= "风向" . $today['direct'] . "\n";
-                        $content .= "风力" . $today['power'] . "\n";
-                        $content .= "空气质量指数" . $today['aqi'] . "\n";
-                    }
+                if($data->Event == 'text'){
+                    $content = $data->Content;
+                    $appkey = '5eed9b01db7f654c50efce3e7e97ed55';
+                    $url = "http://api.tianapi.com/txapi/pinyin/index?key=".$appkey."&text=".$content;
+                    file_get_contents($url);
+                    echo $this->getMsg($data,$content);
                 }
-                file_put_contents("weacher.log",$xml_str);
-                echo $this->getMsg($data,$content);
                 break;
         }
-        if($msgType == "image"){
-            $datas = [
-                "tousername"=>$data->ToUserName,
-                "fromusername"=>$data->FromUserName,
-                "createtime"=>$data->CreateTime,
-                "msgtype"=>$data->MsgType,
-                "picurl"=>$data->PicUrl,
-                "msgid" =>$data->MsgId,
-                "mediaid"=>$data->MediaId,
-            ];
-            $image = new Media();
-            $images = Media::where('picurl',$datas['picurl'])->first();
-            if(!$images){
-                $images=$image->insert($datas);
-            }
-            $token = $this->getAccessToken();
-            $media = $data->MediaId;
-            $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=".$token."&media_id=".$media;
-            $url = file_get_contents($url);
-            file_put_contents("image.jpg",$url);
-            $Content = "图片";
-            echo $this->getMsg($data,$Content);
-        }else if ($msgType == "voice") {
-            $access_token = $this->getAccessToken();
-            Log::info("====语音====" . $access_token);
-            $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=" . $access_token . "&media_id=" . $data->MediaId;
-            $get = file_get_contents($url);
-            file_put_contents("voice.amr", $get);
-            $Content = "语音";
-            $this->getMsg($data, $Content);
-        } else if ($msgType == "video") {
-            $access_token = $this->getAccessToken();
-            Log::info("====视频====" . $access_token);
-            $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=" . $access_token . "&media_id=" . $data->MediaId;
-            $get = file_get_contents($url);
-            file_put_contents("video.mp4", $get);
-            $Content = "视频";
-            $this->getMsg($data, $Content);
-        }
+
     }
 
     public function getMsg($data,$Content){

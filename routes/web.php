@@ -18,6 +18,7 @@ Route::get('/', function () {
 
 Route::get('/test1','WXController@test');
 
+//微信公众号
 Route::prefix('index')->group(function (){
     Route::get('/','WXController@index');
     Route::post('/','WXController@wxEvent');
