@@ -88,6 +88,7 @@ class WXController extends Controller
                     $appkey = '5eed9b01db7f654c50efce3e7e97ed55';
                     $url = "http://api.tianapi.com/txapi/pinyin/index?key=".$appkey."&text=".$content;
                     $response = json_decode(file_get_contents($url),true);
+                    $content = '';
                     if($response['code']==200){
                         print_r($response);
                     }else{

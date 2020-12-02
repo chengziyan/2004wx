@@ -25,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="96" column="17" lean-forward="true" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
+            <state relative-caret-position="220">
+              <caret line="91" column="24" lean-forward="true" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="43" />
               <folding>
                 <element signature="e#7006#7596#0#PHP" />
                 <element signature="e#7020#7052#0#PHP" />
@@ -286,12 +286,12 @@
       <workItem from="1605931400335" duration="31000" />
       <workItem from="1606109840487" duration="36736000" />
       <workItem from="1606696542476" duration="8316000" />
-      <workItem from="1606789407981" duration="9475000" />
+      <workItem from="1606789407981" duration="9838000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89844000" />
+    <option name="totallyTimeSpent" value="90207000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -436,8 +436,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/WXController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="96" column="17" lean-forward="true" selection-start-line="96" selection-start-column="17" selection-end-line="96" selection-end-column="17" />
+        <state relative-caret-position="220">
+          <caret line="91" column="24" lean-forward="true" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="43" />
           <folding>
             <element signature="e#7006#7596#0#PHP" />
             <element signature="e#7020#7052#0#PHP" />
