@@ -83,7 +83,6 @@ class WXController extends Controller
                     }
                 }
             case 'text':
-                if($data->Content == 'text'){
                     $content = urlencode($data->Content);
                     $appkey = '5eed9b01db7f654c50efce3e7e97ed55';
                     $url = "http://api.tianapi.com/txapi/pinyin/index?key=".$appkey."&text=".$content;
@@ -91,10 +90,9 @@ class WXController extends Controller
                     $content = "";
                     if($response['code']==200){
                         $content .= "查询的拼音：" . $response['pinyin'];
-                    }else{
-                        echo "返回错误，状态消息：".$response['msg'];
+                    }else {
+                        echo "返回错误，状态消息：" . $response['msg'];
                     }
-                }
                 echo $this->getMsg($data,$content);
                 break;
         }
