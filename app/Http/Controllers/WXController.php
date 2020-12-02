@@ -84,11 +84,16 @@ class WXController extends Controller
                 }
             case 'text':
                 if($data->Event == 'text'){
-                    $content = $data->Content;
+                    $content = urlencode($data->Content);
                     $appkey = '5eed9b01db7f654c50efce3e7e97ed55';
                     $url = "http://api.tianapi.com/txapi/pinyin/index?key=".$appkey."&text=".$content;
-                    file_get_contents($url);
-                    echo $this->getMsg($data,$content);
+                    $response = json_decode(file_get_contents($url),true);
+                    if($response['code']==200){
+                        echo $this->getMsg($data,$content);
+                    }else{
+                        echo "返回错误，状态消息：".$response['msg'];
+                    }
+
                 }
                 break;
         }
