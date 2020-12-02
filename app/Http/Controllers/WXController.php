@@ -94,9 +94,10 @@ class WXController extends Controller
                         }
                     }
                 echo $this->getMsg($data,$content);
+                echo $this->getMenu();
                 break;
+
         }
-        echo $this->getMenu();
 
     }
 
