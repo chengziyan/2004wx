@@ -94,7 +94,6 @@ class WXController extends Controller
                         }
                     }
                 echo $this->getMsg($data,$content);
-                echo $this->getMenu();
                 break;
 
         }
@@ -117,46 +116,46 @@ class WXController extends Controller
         echo sprintf($xml,$ToUserName,$FromUserName,$CreateTime,$MsgType,$Content);
     }
 
-    public function getMenu(){
-        $access_token = $this->getAccessToken();
-        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$access_token;
-        $menu = [
-
-            'button' => [
-
-                [
-                    'type' => 'view',
-                    'name' => '查询历史',
-                    'url'  => 'https://www.baidu.com'
-                ],
-                [
-                    'name'=>'商城',
-                    'sub_button'=>[
-                        [
-                            'type'=>'view',
-                            'name'=>'京东好货',
-                            'url'=>'http://www.jd.com'
-
-                        ],
-
-                        [
-                            'type' => 'view',
-                            'name' => '商城',
-                            'url'=>'http://2004wyr.comcto.com'
-
-                        ]
-                    ]
-                ],
-                [
-                    'type' => 'view',
-                    'name' => 'BILIBILI',
-                    'url'  => 'http://www.bilibili.com'
-                ],
-            ]
-        ];
-        $data = $this->curl($url,$menu);
-        return $data;
-    }
+//    public function getMenu(){
+//        $access_token = $this->getAccessToken();
+//        $url = 'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$access_token;
+//        $menu = [
+//
+//            'button' => [
+//
+//                [
+//                    'type' => 'view',
+//                    'name' => '查询历史',
+//                    'url'  => 'https://www.baidu.com'
+//                ],
+//                [
+//                    'name'=>'商城',
+//                    'sub_button'=>[
+//                        [
+//                            'type'=>'view',
+//                            'name'=>'京东好货',
+//                            'url'=>'http://www.jd.com'
+//
+//                        ],
+//
+//                        [
+//                            'type' => 'view',
+//                            'name' => '商城',
+//                            'url'=>'http://2004wyr.comcto.com'
+//
+//                        ]
+//                    ]
+//                ],
+//                [
+//                    'type' => 'view',
+//                    'name' => 'BILIBILI',
+//                    'url'  => 'http://www.bilibili.com'
+//                ],
+//            ]
+//        ];
+//        $data = $this->curl($url,$menu);
+//        return $data;
+//    }
 
 
     public function getAccessToken(){
