@@ -89,11 +89,11 @@ class WXController extends Controller
                     $url = "http://api.tianapi.com/txapi/pinyin/index?key=".$appkey."&text=".$content;
                     $response = json_decode(file_get_contents($url),true);
                     if($response['code']==200){
-                        echo $this->getMsg($data,$content);
+                        print_r($response);
                     }else{
                         echo "返回错误，状态消息：".$response['msg'];
                     }
-
+                    echo $this->getMsg($data,$content);
                 }
                 break;
         }
